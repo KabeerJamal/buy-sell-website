@@ -1,0 +1,17 @@
+<nav class="zone green">
+    <ul class="main-nav">
+        <li><a href="/">Home</a></li>
+        <li class="push">
+            <form action="/search" method="post">
+                <i class="fas fa-search"></i> <!--open search page when clicked-->
+                <input type="search" name="search" placeholder="Search">
+            </form>
+        </li>
+        <%if (user) {%>
+            <li class = "push"><a href="/postProductPage">Post your product</a></li>
+            <li><a href="/logout">Log out</a></li>
+        <%} else { %>
+        <li class = "push"><a href="/loginPage">Log in</a>/<a href="/registerPage">Sign up</a></li>
+        <%} %>
+    </ul>
+</nav>

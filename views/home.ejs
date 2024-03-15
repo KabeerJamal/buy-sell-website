@@ -8,19 +8,13 @@
 
 </head>
 <body>
-    <nav class="zone green">
-        <ul class="main-nav">
-            <li><a href="/">Home</a></li>
-            <li class="push">
-                <form action="/search" method="post">
-                    <i class="fas fa-search"></i> <!--open search page when clicked-->
-                    <input type="search" name="search" placeholder="Search">
-                </form>
-            </li>
-            <li class = "push"><a href="/login">Log in</a>/<a href="/registerPage">Sign up</a></li>
-        </ul>
-    </nav>
-   <div class="container zone red">Cover!!</div>
+    <%- include('includes/sharedHeader') %>
+    <%if (user) {%>
+   <div class="container zone red">Welcome <%= user.username %></div>
+    <%} else { %>
+        <div class="container zone red">Welcome Guest</div>
+    <%} %>
+    
 
   <div class="zone blue grid-wrapper">
     <div class="box zone"><img src="/img/data_storage_2_2.png" alt=""></div>
