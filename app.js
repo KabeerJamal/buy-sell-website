@@ -20,10 +20,24 @@ app.use(function(req, res, next) {
 
     //make all error and sucess flash messages available from all templates
     res.locals.errors = req.flash("errors");
+    res.locals.success = req.flash("success");
+
+    /*
+    if (req.session.user) {
+        //console.log(typeof req.session.user._id);//string
+        req.visitorId = req.session.user._id} 
+    else {req.visitorId = 0}*/
 
     res.locals.user = req.session.user;//ejs can access the user object which has username and avatar
     next();
 })
+
+//for debugging
+/*
+app.use(function(req, res, next) {
+    console.log(`${req.method} ${req.originalUrl} was hit`);
+    next();
+});*/
 
 const router = require('./router');
 
@@ -44,9 +58,13 @@ module.exports = app;
 
 //tomm
 
-//create a database for a product and a user can post a product he wishes to sell.
 
-//in postproduct.ejs put an input field for price.
-//to upload image and store in db, watch video, and do it and understand
-//sucessfully post a product and write code to showcase it.
-//git push
+
+//other users can see the product/ so product is also visible in th main page.(in th ehome page call product.getfeed() and display the products)
+//flash success mesage when product is posted
+//my products cover and below other products
+//(till tomm)
+
+//start working on a search bar
+
+

@@ -16,7 +16,15 @@ class Product {
 
             if(!this.errors.length) {
                 productCollection.insertOne(this.data).then(() => {
-                    resolve();
+                    /*console.log(this.data);
+                    {
+                        title: 'ffe',
+                        createdDate: 2024-03-15T15:59:58.277Z,
+                        author: new ObjectId('65f4707ebc61a0ca1758bb65'),
+                        _id: new ObjectId('65f4707ebc61a0ca1758bb66')
+                      }*/
+                      
+                    resolve(this.data);
                 }).catch(() => {
                     this.errors.push("Please try again later.");
                     reject(this.errors);//problem with database
@@ -32,6 +40,7 @@ class Product {
         if(typeof(this.data.price) != "string") {this.data.price = ""};
         if(typeof(this.data.description) != "string") {this.data.description = ""};
         
+        //console.log(this.userId);//string
 
         //get rid of any bogus properties
         this.data = {

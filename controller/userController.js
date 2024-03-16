@@ -17,11 +17,10 @@ exports.mustBeLoggedIn = function(req, res, next) {
 }
 
 exports.login = async function(req, res) {
-    console.log(req.body);
     let user = new User(req.body);
     try {
         await user.login();
-        req.session.user = {username: user.data.username};
+        req.session.user = {username: user.data.username, id: user.data._id};
         req.session.save(function() {
             //console.log(typeof req.session.user._id);//object
             res.redirect('/')//This runs once the session information has been saved to the database
@@ -47,11 +46,13 @@ exports.register = async function(req, res) {
             //console.log(typeof req.session.user._id);//object
             res.redirect('/')//This runs once the session information has been saved to the database
         });
+     
     } catch(e) {
         //console.log(e);
         req.flash('errors', e);
         res.redirect('/registerPage');
         //need to include a flash message here/
+        
     }
 }
 
@@ -62,6 +63,7 @@ exports.registerPage = function(req, res) {
 exports.logout = async function(req,res) {
     await req.session.destroy();
     res.redirect('/');
+    
 }
 
 exports.home = function(req, res) {

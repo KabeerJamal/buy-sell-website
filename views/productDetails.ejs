@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Layout Master</title>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="/productDetails.css">
+</head>
+<body>
+    
+    <%- include('includes/sharedHeader') %>
+    <%- include('includes/flash') %>
+    <div class="product-container">
+        <img src="<%= productInfo.image%>" alt="Product Image">
+        <div class="product-info">
+            <h2>Product Title:<%= productInfo.title %></h2>
+            <p class="price">Product Info:<%= productInfo.price %></p>
+            <p class="description">Product Description: <%= productInfo.description%></p>
+            <button class="chat-btn">Chat</button>
+        </div>
+    </div>
+    <a href="/" class="go-back">Go Back to home Page</a>
+</body>
+</html>
