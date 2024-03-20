@@ -60,11 +60,12 @@ module.exports = app;
 
 
 
-//other users can see the product/ so product is also visible in th main page.(in th ehome page call product.getfeed() and display the products)
-//flash success mesage when product is posted
-//my products cover and below other products
 //(till tomm)
 
-//start working on a search bar
+//start working on a search bar(should higlight your product with "My product")
+//chat
+//payment option
+
+//settings page
 
 

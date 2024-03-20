@@ -23,7 +23,7 @@ class Product {
                         author: new ObjectId('65f4707ebc61a0ca1758bb65'),
                         _id: new ObjectId('65f4707ebc61a0ca1758bb66')
                       }*/
-                      
+                    console.log(this.data);
                     resolve(this.data);
                 }).catch(() => {
                     this.errors.push("Please try again later.");
@@ -58,6 +58,76 @@ class Product {
         if(this.data.price == "") {this.errors.push("You must provide a price.")};
     }
     
+
+    static getMyProducts(userId) {
+        return new Promise(async (resolve,reject) => {
+            if(typeof(userId) != "string" || !ObjectId.isValid(userId)) {
+               reject();
+                return;
+            }
+            try {
+                let products = await productCollection.find({author: new ObjectId(userId)}).toArray();
+                //console.log(products);
+                resolve(products);
+            } catch {
+                reject();
+         }
+
+        })
+    }
+
+    static getOtherProducts(userId) {
+        return new Promise(async (resolve,reject) => {
+            if(typeof(userId) != "string" || !ObjectId.isValid(userId)) {
+               reject();
+                return;
+            }
+            try {
+                let products = await productCollection.find({author: {$ne: new ObjectId(userId)}}).toArray();
+                //console.log(products);
+                resolve(products);
+            } catch {
+                reject();
+         }
+
+        })
+    }
+    
+    static getAllProducts() {
+        return new Promise(async (resolve,reject) => {
+           
+            try {
+                let products = await productCollection.find().toArray();
+                //console.log(products);
+                resolve(products);
+            } catch {
+                reject();
+         }
+
+        })
+    }
+    static findSingleProductById(productId,userId) {
+        return new Promise(async (resolve, reject) => {
+            //console.log(productId);
+            if(typeof(productId) != "string" || !ObjectId.isValid(productId)) {
+                reject();
+                return;
+            }
+            console.log(productId);
+            try {
+                //console.log(productId);
+                let product = await productCollection.findOne({_id: new ObjectId(productId)});
+                //console.log(product);
+                product.isCurrentUser = false;
+                if (product.author == userId) {
+                    product.isCurrentUser = true;  
+                }
+                resolve(product);
+            } catch {   
+                reject();
+            }
+        })
+    }
 }
 
 module.exports = Product;

@@ -1,4 +1,5 @@
 const User = require('../models/User')
+const Product = require('../models/Product')
 
 exports.loginPage = function(req, res) {
     //open a login page
@@ -66,7 +67,26 @@ exports.logout = async function(req,res) {
     
 }
 
-exports.home = function(req, res) {
-    res.render('home.ejs');
-    //make changes here(look in app.js for the changes)
+exports.home = async function(req, res) {
+    if(req.session.user) {
+        try {
+            let myProductInfo = await Product.getMyProducts(req.session.user.id);
+            let otherProductInfo = await Product.getOtherProducts(req.session.user.id);
+            
+            //console.log(otherProductInfo);
+            //productInfo should have all information in array form.
+            res.render('home.ejs', {myProductInfo: myProductInfo, otherProductInfo: otherProductInfo});
+            
+            //make changes here(look in app.js for the changes)
+        } catch(e) {
+            console.log(e);
+            res.send("Sorry, there was a problem. Please try again later.");
+            
+        }
+    } else {
+        let allProductInfo = await Product.getAllProducts();
+        //get all products;and render it accordingly in ejs
+        res.render('home.ejs', {allProductInfo: allProductInfo});
+    }
+  
 }

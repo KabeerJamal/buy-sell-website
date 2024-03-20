@@ -9,23 +9,63 @@
 </head>
 <body>
     <%- include('includes/sharedHeader') %>
-    <%if (user) {%>
-   <div class="container zone red">Welcome <%= user.username %></div>
-    <%} else { %>
-        <div class="container zone red">Welcome Guest</div>
-    <%} %>
+    <div class="container zone red">
+      <%if (user) {%>
+      <div class="heading"><%= user.username %>'s Products:</div>
+      <div class="parent-div">
+        <% myProductInfo.forEach(function(product) { %>
+      
+          <div class="product-container">
+            <img src="<%= product.image%>" alt="Product Image">
+            <div class="product-info">
+                <h2>Product Title:<%= product.title %></h2>
+                <p class="price">Product Info:<%= product.price %></p>
+                <p class="description">Product Description: <%= product.description%></p>
+                <a href="/productDetails/<%= product._id %>">View Details</a>
+            </div>
+        </div>
+      
+        <%})%>
+     </div>
+      <%} else { %>
+        <div>Welcome Guest</div>        
+      <%} %>
+    </div>
     
 
+  
   <div class="zone blue grid-wrapper">
-    <div class="box zone"><img src="/img/data_storage_2_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/desktop_analytics_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/files_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/monitor_coding_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/monitor_settings_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/server_2_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/server_3.png" alt=""></div>
-    <div class="box zone"><img src="/img/server_safe_2.png" alt=""></div>
-    <div class="box zone"><img src="/img/undraw.png" alt=""></div>
+    <div class="heading">Products:</div>
+  
+    <%if (user) {%>
+
+      <% otherProductInfo.forEach(function(product) { %>
+      
+        <div class="product-container">
+          <img src="<%= product.image%>" alt="Product Image">
+          <div class="product-info">
+              <h2>Product Title:<%= product.title %></h2>
+              <p class="price">Product Info:<%= product.price %></p>
+              <p class="description">Product Description: <%= product.description%></p>
+              <a href="/productDetails/<%= product._id %>">View Details</a>
+          </div>
+        </div>
+  
+      <%})%>
+      <%} else { %>
+        <% allProductInfo.forEach(function(product) { %>
+      
+          <div class="product-container">
+            <img src="<%= product.image%>" alt="Product Image">
+            <div class="product-info">
+                <h2>Product Title:<%= product.title %></h2>
+                <p class="price">Product Info:<%= product.price %></p>
+                <p class="description">Product Description: <%= product.description%></p>
+                <a href="/productDetails/<%= product._id %>">View Details</a>
+            </div>
+          </div>   
+        <%})%>   
+      <%} %>
   </div>
 
   <footer class="zone yellow">Footer</footer>
