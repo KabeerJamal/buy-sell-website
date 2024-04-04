@@ -36,10 +36,21 @@ exports.postProduct = async function(req, res) {
 
 exports.productDetails = async function(req, res) {
     try {
-        let productInfo = await Product.findSingleProductById(req.params.id, req.session.user.id);
+        let productInfo = await Product.findSingleProductById(req.params.id, req.visitorId);
         //console.log(productInfo);
         res.render('productDetails.ejs', {productInfo: productInfo});
     } catch {
         res.send("failure");
     }
+}
+
+exports.search = async function(req, res) {
+    console.log(req.body.searchTerm);
+    try {
+        let result = await Product.search(req.body.searchTerm);
+        res.json(result);
+    } catch {
+        res.json([]);
+    }
+    
 }

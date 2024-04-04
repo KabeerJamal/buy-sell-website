@@ -2,10 +2,10 @@
     <ul class="main-nav">
         <li><a href="/">Home</a></li>
         <li class="push">
-            <form action="/search" method="post">
-                <i class="fas fa-search"></i> <!--open search page when clicked-->
+            <div class="search-bar">
+                <a href="#" class="header-search-icon" ><i class="fas fa-search"></i></a> <!--open search page when clicked-->
                 <input type="search" name="search" placeholder="Search">
-            </form>
+            </div>
         </li>
         <%if (user) {%>
             <li class = "push"><a href="/postProductPage">Post your product</a></li>

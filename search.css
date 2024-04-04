@@ -1,0 +1,30 @@
+body, * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+}
+.search-bar-2, .result-container {
+    opacity:0;
+}
+
+.search-bar-2 {
+    background-color: pink;
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 20%;
+}
+
+.search-bar-2--visible, .result-container--visible {
+    opacity:1;
+}
+
+
+.search-bar-2 input, .close-search, .search-bar-2 i {
+    height: 20%;
+}
+
+.result {
+    height: auto;
+}

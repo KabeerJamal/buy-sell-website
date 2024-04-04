@@ -4,7 +4,6 @@ const MongoStore = require('connect-mongo');
 const flash = require('connect-flash');
 const app = express();
 
-
 let sessionOptions = session({
     secret: "JavaScript is so cool",
     store: MongoStore.create({client: require('./db')}),
@@ -22,11 +21,11 @@ app.use(function(req, res, next) {
     res.locals.errors = req.flash("errors");
     res.locals.success = req.flash("success");
 
-    /*
+    
     if (req.session.user) {
         //console.log(typeof req.session.user._id);//string
         req.visitorId = req.session.user._id} 
-    else {req.visitorId = 0}*/
+    else {req.visitorId = 0}
 
     res.locals.user = req.session.user;//ejs can access the user object which has username and avatar
     next();
@@ -59,13 +58,15 @@ module.exports = app;
 //tomm
 
 
+//fix search result image size
+//push the code to github
 
-//(till tomm)
-
-//start working on a search bar(should higlight your product with "My product")
-//chat
-//payment option
-
+//chat(2 days) (30)
+//clean code(1 day)
+//better UI(2-3 days)
+//payment option (2-3 days)
 //settings page
+//deploying website(2 days)
+
 
 

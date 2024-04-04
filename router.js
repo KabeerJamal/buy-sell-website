@@ -19,11 +19,6 @@ const upload = multer({storage: storage})
 
 router.get('/', userController.home);
 
-router.post('/search', function(req,res) {
-    res.send('Open search page');
-})
-
-
 
 router.get('/loginPage', userController.loginPage);//opens the login page
 router.post('/login', userController.login);//logs in the user
@@ -39,5 +34,6 @@ router.get('/logout', userController.logout)
 router.get('/postProductPage', userController.mustBeLoggedIn, productController.postProductPage);
 router.post('/postProduct', userController.mustBeLoggedIn, upload.single('image') , productController.postProduct);
 router.get('/productDetails/:id', productController.productDetails);
+router.post('/search', productController.search);
 
 module.exports = router;
